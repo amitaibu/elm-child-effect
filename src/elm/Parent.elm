@@ -48,7 +48,7 @@ update action model =
     ChildAction act ->
       let
         childContext =
-          Effects.none
+          Task.succeed Increment |> Effects.task
 
         (childModel, childEffects) = Child.update childContext act model.childModel
       in
@@ -64,9 +64,6 @@ view address model =
   let
     childAddress =
         Signal.forwardTo address ChildAction
-
-    childContext =
-      Task.succeed Increment |> Effects.task
   in
 
   div []
