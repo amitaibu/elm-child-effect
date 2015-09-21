@@ -34,7 +34,7 @@ update context action model =
           effect =
             if model > 5
               then
-                context |> Effects.task
+                context
               else
                 Effects.none
 
